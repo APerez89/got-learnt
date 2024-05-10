@@ -16,7 +16,7 @@ const StartForm = ({ onSubmit }) => {
 
       <label htmlFor="firstName">First Name:</label>
       <input
-        type="text"
+        type='text'
         id='firstName'
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
@@ -24,7 +24,7 @@ const StartForm = ({ onSubmit }) => {
       />
       <label htmlFor="lastName">Last Name:</label>
       <input
-        type="text"
+        type='text'
         id='lastName'
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
