@@ -1,11 +1,18 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useQuizContext } from '@/app/lib/QuizContext';
 
 const StartForm = ({ firstName, lastName, onSubmit}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { setUserData } = useQuizContext();
 
   const onSubmitHandler = (data) => {
-    onSubmit(data); // Pass form data to parent component
+    setUserData({
+      firstName: data.firstName,
+      lastName: data.lastName,
+    })
+     // Pass form data to parent component
+    onSubmit(data);
   };
 
   return (

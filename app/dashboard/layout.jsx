@@ -1,3 +1,4 @@
+'use client';
 import SideNav from "../ui/dashboard/side-nav";
 import StatsNav from "../ui/dashboard/stats-nav";
 

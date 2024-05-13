@@ -1,8 +1,10 @@
-'use client';
+// 'use client';
 import React, { useState } from 'react';
-import { forkLiftQuestions } from '../../lib/data.js';
+import { useQuizContext } from '../../lib/QuizContext';;
 
 const Cards = () => {
+  const { quizData } = useQuizContext();
+  const { questions } = quizData;
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [checked, setChecked] = useState(false);
@@ -12,7 +14,6 @@ const Cards = () => {
     score: 0,
     correctAnswers: 0,
   });
-  const { questions } = forkLiftQuestions;
   const { question, options, correctAnswer } = questions[activeQuestion];
   const pointsPerAnswer = 100 / questions.length;
   const maxScore = questions.length * pointsPerAnswer;
@@ -23,15 +24,12 @@ const Cards = () => {
     setSelecetedAnswerIndex(key);
 
     if (key === correctAnswer) {
-      console.log('true', option, key);
       setSelectedAnswer(true);
     } else {
-      console.log('false', option, key);
       setSelectedAnswer(false);
     }
   }
   const nextQuestion = () => {
-    console.log('clicked', pointsPerAnswer);
     setSelecetedAnswerIndex(null);
     setResult((prev) => 
       selectedAnswer
