@@ -5,7 +5,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 
 :root {
@@ -36,4 +36,12 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+li {
+  list-style: none;
+  padding: 10px 15px;
+  background-color: #ed5e5e;
+  margin: 10px 0px;
+  cursor: pointer;
 }

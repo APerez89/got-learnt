@@ -1,35 +1,57 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
-const StartForm = ({ onSubmit }) => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+const StartForm = ({ firstName, lastName, onSubmit}) => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Pass the user data to the parent component
-    onSubmit({ firstName, lastName });
+  const onSubmitHandler = (data) => {
+    onSubmit(data); // Pass form data to parent component
   };
 
   return (
-    <form onSubmit={handleSubmit} className='text-white'>
+    <form onSubmit={handleSubmit(onSubmitHandler)} className='text-white'>
       <h2>To Start, Please fill out the form.</h2>
 
       <label htmlFor="firstName">First Name:</label>
       <input
         type='text'
+        tabIndex='0'
         id='firstName'
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        required
-      />
+        className='text-black'
+        {...register('firstName', { required: true })} // Register this field with validation rule
+        />
+      {errors.firstName && <p className='error'>First Name is required</p>}
       <label htmlFor="lastName">Last Name:</label>
       <input
         type='text'
+        tabIndex='0'
         id='lastName'
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        required
+        className='text-black'
+        {...register('lastName', { required: true })} // Register this field with validation rule
       />
+      {errors.lastName && <p className='error'>Last Name is required</p>}
+      <label>How many questions?</label>
+      <div>
+        <input
+          type="radio"
+          name="fullQuiz"
+          value="full"
+          {...register('quizLength', { required: true })}
+        />
+        <label htmlFor="fullQuiz"> full quiz</label>
+      </div>
+      <div>
+        <input
+          type="radio"
+          name="halfQuiz"
+          value="half"
+          {...register('quizLength', { required: true })}
+        />
+        <label htmlFor="halfQuiz"> half quiz</label>
+      </div>
+      {errors.quizLength && <p className='error'>Please select quiz length</p>}
+
+      <button type='submit'>Start Quiz</button>
     </form>
   );
 };
