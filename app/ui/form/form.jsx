@@ -43,7 +43,6 @@ const StartForm = ({ firstName, lastName, onSubmit}) => {
         btnMsg={'Start Quiz'}
         type={'submit'}
       />
-      {/* <button type='submit'>Start Quiz</button> */}
     </form>
   );
 };
