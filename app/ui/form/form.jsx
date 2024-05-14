@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useQuizContext } from '@/app/lib/QuizContext';
+import Button from '../button';
 
 const StartForm = ({ firstName, lastName, onSubmit}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -37,28 +38,12 @@ const StartForm = ({ firstName, lastName, onSubmit}) => {
         {...register('lastName', { required: true })} // Register this field with validation rule
       />
       {errors.lastName && <p className='error'>Last Name is required</p>}
-      <label>How many questions?</label>
-      <div>
-        <input
-          type="radio"
-          name="fullQuiz"
-          value="full"
-          {...register('quizLength', { required: true })}
-        />
-        <label htmlFor="fullQuiz"> full quiz</label>
-      </div>
-      <div>
-        <input
-          type="radio"
-          name="halfQuiz"
-          value="half"
-          {...register('quizLength', { required: true })}
-        />
-        <label htmlFor="halfQuiz"> half quiz</label>
-      </div>
-      {errors.quizLength && <p className='error'>Please select quiz length</p>}
 
-      <button type='submit'>Start Quiz</button>
+      <Button
+        btnMsg={'Start Quiz'}
+        type={'submit'}
+      />
+      {/* <button type='submit'>Start Quiz</button> */}
     </form>
   );
 };

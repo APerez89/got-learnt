@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Button = ({ btnMsg, onClick, disabled }) => {
+const Button = ({ btnMsg, onClick, disabled, type }) => {
   let buttonClass = "py-2 px-8 rounded-lg mx-4";
   
   // Add additional classes based on the disabled state
@@ -15,6 +15,7 @@ const Button = ({ btnMsg, onClick, disabled }) => {
     onClick={onClick}
     className={buttonClass}
     disabled={disabled}
+    type={type}
   >
     { btnMsg }
   </button>
