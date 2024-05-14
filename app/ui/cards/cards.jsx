@@ -1,12 +1,13 @@
 // 'use client';
 import React, { useState } from 'react';
-import { useQuizContext } from '../../lib/QuizContext';;
+import { useQuizContext } from '../../lib/QuizContext';
+import Button from '../button';
 
 const Cards = () => {
   const { quizData } = useQuizContext();
   const { questions } = quizData;
   const [activeQuestion, setActiveQuestion] = useState(0);
-  const [selectedAnswer, setSelectedAnswer] = useState('');
+  const [selectedAnswers, setSelectedAnswers] = useState('');
   const [checked, setChecked] = useState(false);
   const [selectedAnswerIndex, setSelecetedAnswerIndex] = useState(null);
   const [showResult, setShowResult] = useState(false);
@@ -24,15 +25,22 @@ const Cards = () => {
     setSelecetedAnswerIndex(key);
 
     if (key === correctAnswer) {
-      setSelectedAnswer(true);
+      setSelectedAnswers(true);
     } else {
-      setSelectedAnswer(false);
+      setSelectedAnswers(false);
     }
   }
+  const prevQuestion = () => {
+    if (activeQuestion > 0) {
+      setActiveQuestion(activeQuestion - 1);
+    }
+  }
+  // Go to next question && calculate score if answer is correct
   const nextQuestion = () => {
+    console.log('clicked');
     setSelecetedAnswerIndex(null);
     setResult((prev) => 
-      selectedAnswer
+      selectedAnswers
         ? {
           ...prev,
           score: prev.score + pointsPerAnswer,
@@ -74,23 +82,19 @@ const Cards = () => {
                 <span>{ optionText }</span>
               </li>
             ))}
-            {checked ? (
-              <button
-                onClick={nextQuestion}
+            {activeQuestion > 0 && (
+              <Button 
+                btnMsg='previous'
+                onClick={prevQuestion}
                 className='btn pointer'
-              >
-                { activeQuestion === questions.length - 1 ? 'Finish' : 'Next' }
-              </button>
-            ) : (
-              <button
-                onClick={nextQuestion}
-                disabled
-                className='btn-disabled'
-              >
-                {' '}
-                { activeQuestion === questions.length - 1 ? 'Finish' : 'Next' }
-              </button>
+              />
             )}
+            <Button
+              btnMsg={activeQuestion === questions.length - 1 ? 'Finish' : 'Next' }
+              onClick={nextQuestion}
+              disabled={!checked}
+              className={checked ? 'btn pointer' : 'btn-disabled'}
+            />
           </div>
         ) : (
           <div className="quiz-res">

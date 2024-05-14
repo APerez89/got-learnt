@@ -20,16 +20,8 @@ export default function Page() {
   return (
     <div className="dashboard-container">
       <h1>Welcome to the dash baby!</h1>
-      {!(userData. firstName && userData.lastName && quizLength) && (
-        <StartForm
-          firstName={userData.firstName}
-          lastName={userData.lastName}
-          onSubmit={handleFormSubmit}
-        /> /* handleFormSubmit passed as a prop */
-      )}
-      {userData.firstName && userData.lastName && quizLength && (
-        <Cards quizLength={quizLength} /> // quiz length passed as a prop
-      )}
+      
+      <Cards quizLength={quizLength} />
     </div>
   )
 }
