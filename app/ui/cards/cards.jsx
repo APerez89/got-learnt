@@ -1,10 +1,10 @@
 // 'use client';
-import React, { useState } from 'react';
-import { useQuizContext } from '../../lib/QuizContext';
+import React, { useContext, useState } from 'react';
+import { QuizContext } from '../../lib/QuizContext';
 import Button from '../button';
 
 const Cards = () => {
-  const { quizData } = useQuizContext();
+  const { quizData } = useContext(QuizContext);
   const { questions } = quizData;
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState('');

@@ -1,8 +1,8 @@
-import React from 'react';
-import { useQuizContext } from '@/app/lib/QuizContext';
+import React, { useContext } from 'react';
+import { QuizContext } from '@/app/lib/QuizContext';
 
 export default function StatsNav() {
-  const { userData } = useQuizContext();
+  const { userData } = useContext(QuizContext);
 
   const statsNavStyles = {
     backgroundColor: 'var(--sonic)',

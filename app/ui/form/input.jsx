@@ -17,10 +17,9 @@ const Input = ({ htmlFor, id, name, errors }) => {
         required
         className={`
           mt-1 block w-full px-4 py-3 bg-white border border-slate-300 rounded-md text-sm shadow-sm placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500
-          ${errors[id] ? 'invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500' : ''}
         `}
       />
-      {errors[id] && <p className='error text-rose-600 mt-3'>{ name } is required</p>}
+      {/* {errors[id] && <p className='error text-rose-600 mt-3'>{ name } is required</p>} */}
     </div>
   )
 }
